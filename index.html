@@ -447,12 +447,43 @@
             transform: scale(1.02);
         }
 
+        .title-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 8px; /* Add some space above */
+        }
+
         .video-title {
             font-size: 1rem;
             color: var(--text-primary);
-            line-height: 1.6;
+            line-height: 1.5; /* Adjusted */
             font-weight: 600;
-            text-align: center;
+            text-align: left; /* Changed from center */
+            flex-grow: 1; /* Take available space */
+            word-break: break-word; /* Handle long titles */
+        }
+
+        .copy-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
+        .copy-btn:hover {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
         }
 
         /* Download Options */
@@ -811,10 +842,18 @@
             const card = document.createElement('div');
             card.className = 'result-card';
             
+            // Bersihkan judul dari tanda kutip untuk HTML
+            const safeTitle = (title || 'No title').replace(/'/g, "\\'");
+
             card.innerHTML = `
                 <div class="video-info">
                     <img class="video-thumb" src="${thumbnail}" alt="Video Thumbnail">
-                    <p class="video-title">${title || 'No title'}</p>
+                    <div class="title-wrapper">
+                        <p class="video-title">${title || 'No title'}</p>
+                        <button class="copy-btn" onclick="copyToClipboard('${safeTitle}')" title="Copy title">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="download-options">
                     <p class="option-label">Choose Quality</p>
@@ -870,6 +909,34 @@
             `;
             
             resultContainer.appendChild(card);
+        }
+
+
+        // Copy to Clipboard Function
+        function copyToClipboard(text) {
+            // Create a temporary textarea element
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = text;
+            
+            // Make it invisible and append it to the body
+            tempTextArea.style.position = 'absolute';
+            tempTextArea.style.left = '-9999px';
+            document.body.appendChild(tempTextArea);
+            
+            // Select the text and copy it
+            tempTextArea.select();
+            tempTextArea.setSelectionRange(0, 99999); // For mobile devices
+            
+            try {
+                document.execCommand('copy');
+                showAlert('Title copied to clipboard!', 'success');
+            } catch (err) {
+                showAlert('Failed to copy title.', 'error');
+                console.error('Failed to copy text: ', err);
+            }
+            
+            // Remove the temporary element
+            document.body.removeChild(tempTextArea);
         }
 
 
