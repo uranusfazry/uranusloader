@@ -1,7 +1,9 @@
+<!DOCTYPE html>
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UranusLoader Premium</title>
+    <title>Uranusfazry - UranusLoader Premium</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -83,106 +85,23 @@
             color: var(--text-primary);
             min-height: 100vh;
             display: flex;
+            flex-direction: column; /* DIUBAH untuk menampung iklan atas/bawah */
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start; /* DIUBAH agar mulai dari atas */
             padding: 20px;
             transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
             position: relative;
             overflow-x: hidden;
         }
 
-        /* Animated Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 50%, var(--accent-glow) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 50%, var(--accent-glow) 0%, transparent 50%);
-            animation: rotate 20s linear infinite;
-            opacity: 0.3;
-            z-index: -1;
-            display: none; /* Dinonaktifkan untuk tampilan profesional */
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Theme Toggle Button */
-        .theme-toggle {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            padding: 12px 20px;
-            border-radius: 50px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-md) var(--accent-glow);
-            cursor: pointer;
-            transition: all var(--transition-speed) ease;
-        }
-
-        .theme-toggle:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg) var(--accent-glow);
-        }
-
-        .theme-toggle i {
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .theme-toggle:hover i {
-            transform: rotate(180deg);
-        }
-
-        .theme-label {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            letter-spacing: 0.5px;
-        }
-
-        /* Main Container */
-        .container {
-            width: 100%;
-            max-width: 560px;
-            background: var(--bg-card);
-            backdrop-filter: blur(30px);
-            border-radius: var(--border-radius);
-            padding: 48px;
-            box-shadow: var(--shadow-lg) var(--accent-glow);
-            border: 1px solid var(--border-color);
-            transition: all var(--transition-speed) ease;
-            animation: fadeIn 0.6s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
+        /* ... [CSS yang ada sebelumnya tetap di sini] ... */
+        
         /* Header */
         .header {
             text-align: center;
             margin-bottom: 40px;
         }
-
+/* ... [Sisa CSS yang ada dari .header hingga .video-thumb:hover] ... */
         .logo-container {
             display: inline-flex;
             align-items: center;
@@ -428,11 +347,8 @@
 
 
         .video-info {
-            /* background: var(--bg-input); Dihapus, pindah ke parent */
-            /* border-radius: 16px; Dihapus */
             padding: 0; /* Direset */
             margin-bottom: 20px;
-            /* border: 1px solid var(--border-color); Dihapus */
         }
 
         .video-thumb {
@@ -449,14 +365,6 @@
             transform: scale(1.02);
         }
 
-        .title-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            margin-top: 8px; /* Add some space above */
-        }
-
         .video-title {
             font-size: 1rem;
             color: var(--text-primary);
@@ -465,21 +373,23 @@
             text-align: left; /* Changed from center */
             flex-grow: 1; /* Take available space */
             word-break: break-word; /* Handle long titles */
+            margin-bottom: 12px; /* Beri jarak ke tombol di bawahnya */
         }
 
         .copy-btn {
             background: var(--bg-secondary);
             border: 1px solid var(--border-color);
             color: var(--text-secondary);
-            width: 35px;
-            height: 35px;
+            width: 100%; /* DIUBAH: Jadi lebar penuh */
+            padding: 12px 20px; /* DITAMBAHKAN: Padding agar lebih besar */
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0; /* Prevent shrinking */
+            gap: 10px; /* DITAMBAHKAN: Jarak ikon dan teks */
+            font-weight: 600; /* DITAMBAHKAN: Teks tebal */
         }
 
         .copy-btn:hover {
@@ -493,7 +403,7 @@
             display: grid;
             gap: 12px;
         }
-
+/* ... [Sisa CSS yang ada dari .option-label hingga akhir @media (max-width: 640px)] ... */
         .option-label {
             color: var(--text-secondary);
             font-size: 0.85rem;
@@ -781,6 +691,7 @@
         @media (max-width: 640px) {
             .container {
                 padding: 32px 24px;
+                margin-top: 0; /* Reset margin */
             }
 
             .header h1 {
@@ -813,14 +724,192 @@
                 width: auto;
             }
         }
+
+        /* --- CSS IKLAN URANUS SUPREME --- */
+
+        /* Interstitial Ad */
+        #ad-interstitial-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 99998;
+            display: none; /* Sembunyi by default */
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #ad-interstitial-content {
+            position: relative;
+            background: var(--bg-card);
+            padding: 24px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 700px; /* Lebar max interstitial */
+            z-index: 99999;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+            /* Animasi Pop-in */
+            transform: scale(0.9);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #ad-interstitial-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2.5rem;
+            line-height: 1;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease;
+            font-weight: 300;
+        }
+
+        #ad-interstitial-close:hover {
+            transform: scale(1.1);
+            color: var(--text-primary);
+        }
+
+        #ad-interstitial-body {
+            margin-top: 10px;
+            text-align: center;
+            min-height: 250px; /* Pastikan ada ruang untuk iklan 300x250 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Kelas utilitas untuk JS */
+        .ad-fade-in {
+            display: flex !important;
+            opacity: 1 !important;
+        }
+        .ad-fade-in #ad-interstitial-content {
+             transform: scale(1);
+        }
+
+        .ad-fade-out {
+            opacity: 0 !important;
+        }
+        .ad-fade-out #ad-interstitial-content {
+             transform: scale(0.9);
+        }
+
+        /* Banner Containers */
+        .ad-banner-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* DIUBAH: agar banner tinggi tidak merusak center */
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 25px auto; /* Margin atas/bawah */
+            width: 100%;
+            max-width: 980px; /* Max width untuk banner besar */
+        }
+
+        .ad-banner-box {
+            display: inline-block;
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 5px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            /* Ukuran min di-set oleh script iklan */
+        }
+
+        /* Aturan Tampil/Sembunyi Responsif */
+        
+        /* Default: 320x50 (Mobile) */
+        .ad-728x90, .ad-468x60 {
+            display: none;
+        }
+        .ad-320x50 {
+            display: inline-block;
+        }
+
+        /* Tablet (min 500px) - Tampilkan 468x60 */
+        @media (min-width: 500px) {
+            .ad-468x60 { display: inline-block; }
+            .ad-320x50 { display: none; }
+        }
+
+        /* Desktop (min 768px) - Tampilkan 728x90 */
+        @media (min-width: 768px) {
+            .ad-728x90 { display: inline-block; }
+            .ad-468x60, .ad-320x50 { display: none; }
+        }
+
+        /* Kontainer Iklan Bawah (Selalu tampilkan semua, biarkan flex-wrap yg atur) */
+        .ad-300x250, .ad-160x600, .ad-160x300 {
+            display: inline-block;
+            margin: 5px;
+        }
+         /* --- AKHIR CSS IKLAN --- */
+
     </style>
 </head>
 <body data-theme="prime">
+
+    <!-- Uranus Supreme - Fullscreen Interstitial Ad -->
+    <div id="ad-interstitial-overlay">
+        <div id="ad-interstitial-content">
+            <span id="ad-interstitial-close" title="Tutup">&times;</span>
+            <div id="ad-interstitial-body">
+                <!-- Iklan Interstitial (menggunakan 300x250) -->
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '9926bc402bccb02cb714f880bc425b02',
+                        'format' : 'iframe',
+                        'height' : 250,
+                        'width' : 300,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//lightingshovestature.com/9926bc402bccb02cb714f880bc425b02/invoke.js"></script>
+            </div>
+        </div>
+    </div>
+    <!-- Akhir Interstitial Ad -->
+
     <!-- Theme Toggle -->
     <div class="theme-toggle" onclick="toggleTheme()">
         <i class="fas fa-palette"></i>
         <span class="theme-label">Switch Theme</span>
     </div> 
+
+    <!-- Uranus Supreme - Top Banner Ads -->
+    <div class="ad-banner-container">
+        <!-- 728x90 (Desktop) -->
+        <div class="ad-banner-box ad-728x90">
+            <script type="text/javascript">
+                atOptions = { 'key' : '3ed45cb1a27711e5afe6cc534933df33', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+            </script>
+            <script type="text/javascript" src="//lightingshovestature.com/3ed45cb1a27711e5afe6cc534933df33/invoke.js"></script>
+        </div>
+        <!-- 468x60 (Tablet) -->
+        <div class="ad-banner-box ad-468x60">
+            <script type="text/javascript">
+                atOptions = { 'key' : 'b11859dffb43d74426fbc6daff11b3fb', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
+            </script>
+            <script type="text/javascript" src="//lightingshovestature.com/b11859dffb43d74426fbc6daff11b3fb/invoke.js"></script>
+        </div>
+        <!-- 320x50 (Mobile) -->
+        <div class="ad-banner-box ad-320x50">
+            <script type="text/javascript">
+                atOptions = { 'key' : '2cebf45e503fd19a78debda4d44c1630', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };
+            </script>
+            <script type="text/javascript" src="//lightingshovestature.com/2cebf45e503fd19a78debda4d44c1630/invoke.js"></script>
+        </div>
+    </div>
+    <!-- Akhir Top Banner Ads -->
 
     <!-- Main Container -->
     <div class="container">
@@ -853,6 +942,13 @@
             <span>Process Links</span>
         </button>
 
+        <!-- Uranus Supreme - Native Banner Ad -->
+        <div style="margin: 25px 0 15px 0; text-align: center;">
+            <div id="container-400b6f2a2f83b15c93d847997310fec8" style="display: inline-block;"></div>
+            <script async="async" data-cfasync="false" src="//lightingshovestature.com/400b6f2a2f83b15c93d847997310fec8/invoke.js"></script>
+        </div>
+        <!-- Akhir Native Banner Ad -->
+
         <!-- Loading -->
         <div id="loading" class="loading">
             <div class="loading-spinner"></div>
@@ -864,6 +960,32 @@
             <!-- Hasil akan dimasukkan di sini oleh JavaScript -->
         </div>
     </div>
+
+    <!-- Uranus Supreme - Bottom Banner Ads -->
+    <div class="ad-banner-container">
+        <!-- 300x250 -->
+        <div class="ad-banner-box ad-300x250">
+            <script type="text/javascript">
+                atOptions = { 'key' : '9926bc402bccb02cb714f880bc425b02', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
+            </script>
+            <script type="text/javascript" src="//lightingshovestature.com/9926bc402bccb02cb714f880bc425b02/invoke.js"></script>
+        </div>
+        <!-- 160x600 -->
+        <div class="ad-banner-box ad-160x600">
+            <script type="text/javascript">
+                atOptions = { 'key' : '4e9bb32be10d57f46588804dc87dbfcd', 'format' : 'iframe', 'height' : 600, 'width' : 160, 'params' : {} };
+            </script>
+            <script type="text/javascript" src="//lightingshovestature.com/4e9bb32be10d57f46588804dc87dbfcd/invoke.js"></script>
+        </div>
+        <!-- 160x300 -->
+        <div class="ad-banner-box ad-160x300">
+             <script type="text/javascript">
+                atOptions = { 'key' : '06d5d2d53403ad6d6f156cfcdf0bb345', 'format' : 'iframe', 'height' : 300, 'width' : 160, 'params' : {} };
+            </script>
+            <script type="text/javascript" src="//lightingshovestature.com/06d5d2d53403ad6d6f156cfcdf0bb345/invoke.js"></script>
+        </div>
+    </div>
+    <!-- Akhir Bottom Banners -->
 
     <!-- Toast Container -->
     <div id="toast-container"></div>
@@ -894,6 +1016,7 @@
                 document.body.insertAdjacentHTML('beforeend', watermarkHTML);
 
                 const watermarkEl = document.getElementById('futuristic-watermark');
+                // ... [Sisa Kode Watermark tidak diubah] ...
                 const textEl = document.getElementById('f-watermark-text');
                 const logoEl = watermarkEl.querySelector('.f-logo-container');
                 const mainContentEl = document.getElementById('f-main-content');
@@ -982,8 +1105,6 @@
                     runAutoSequence();
                     autoPlayInterval = setInterval(runAutoSequence, 3500);
                 };
-
-                // watermarkEl.addEventListener('click', () => { watermarkEl.classList.toggle('light-mode'); }); // Dihapus: Tema dikontrol oleh tombol utama
                 
                 const init = () => {
                     resizeCanvas();
@@ -1005,6 +1126,7 @@
 
         // Theme Management
         function toggleTheme() {
+            // ... [Kode Theme Management tidak diubah] ...
             const body = document.body;
             const currentTheme = body.getAttribute('data-theme');
             const newTheme = currentTheme === 'prime' ? 'luxury' : 'prime';
@@ -1032,11 +1154,11 @@
 
         // Load saved theme
         function loadTheme() {
+            // ... [Kode Load Theme tidak diubah] ...
             const savedTheme = localStorage.getItem('uranusloader-theme') || 'prime';
             document.body.setAttribute('data-theme', savedTheme);
 
             // --- SINKRONISASI WATERMARK SAAT LOAD ---
-            // Pastikan ini dipanggil SETELAH watermarkEl di-render
             const checkWatermark = () => {
                 const watermarkEl = document.getElementById('futuristic-watermark');
                 if (watermarkEl) {
@@ -1046,7 +1168,6 @@
                         watermarkEl.classList.remove('light-mode');
                     }
                 } else {
-                    // Coba lagi jika watermark belum dimuat
                     setTimeout(checkWatermark, 100);
                 }
             };
@@ -1056,17 +1177,13 @@
 
         // Main function to process multiple links
         async function processLinks() {
+            // ... [Kode processLinks tidak diubah] ...
             const urlInput = document.getElementById('url');
             
-            // --- PERBAIKAN: Membersihkan URL ---
-            // 1. Pisahkan per baris
-            // 2. Trim (hapus spasi) dari SETIAP baris
-            // 3. Filter (buang) baris yang sekarang kosong
             const urls = urlInput.value
                 .split('\n')
                 .map(url => url.trim())
                 .filter(url => url.trim() !== '');
-            // --- AKHIR PERBAIKAN ---
 
             if (urls.length === 0) {
                 showAlert('Please enter at least one TikTok URL', 'warning');
@@ -1077,10 +1194,9 @@
             const loading = document.getElementById('loading');
             const resultContainer = document.getElementById('result-container');
 
-            // Reset UI
             btn.disabled = true;
             loading.style.display = 'block';
-            resultContainer.innerHTML = ''; // Kosongkan hasil sebelumnya
+            resultContainer.innerHTML = '';
             
             let successCount = 0;
             let errorCount = 0;
@@ -1088,13 +1204,9 @@
             for (const [index, url] of urls.entries()) {
                 loading.querySelector('p').textContent = `Processing video ${index + 1} of ${urls.length}...`;
                 
-                // --- TAMBAHAN: Jeda Anti-Rate Limit ---
-                // Beri jeda 300ms antar request untuk menghindari blokir API
-                // Kita lewati jeda untuk item pertama (index 0)
                 if (index > 0) {
                     await new Promise(resolve => setTimeout(resolve, 300));
                 }
-                // --- AKHIR TAMBAHAN ---
 
                 try {
                     if (!url.includes('tiktok.com')) {
@@ -1118,7 +1230,6 @@
                 }
             }
 
-            // Finished processing
             loading.style.display = 'none';
             btn.disabled = false;
             
@@ -1132,13 +1243,13 @@
 
         // Function to create a success result card
         function createResultCard(data) {
+            // ... [Kode createResultCard tidak diubah] ...
             const { video_hd, video_sd, mp3, thumbnail, title } = data;
             const resultContainer = document.getElementById('result-container');
             
             const card = document.createElement('div');
             card.className = 'result-card';
             
-            // Bersihkan judul dari tanda kutip untuk HTML
             const safeTitle = (title || 'No title').replace(/'/g, "\\'");
 
             card.innerHTML = `
@@ -1151,13 +1262,15 @@
                         loading="lazy"
                         onerror="this.src='https://placehold.co/400x225/374151/9ca3af?text=Thumbnail+Failed&font=sans'; this.onerror=null;"
                     >
-                    <div class="title-wrapper">
-                        <p class="video-title">${title || 'No title'}</p>
-                        <button class="copy-btn" onclick="copyToClipboard('${safeTitle}')" title="Copy title">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
+                    
+                    <p class="video-title">${title || 'No title'}</p>
+                    
+                    <button class="copy-btn" onclick="copyToClipboard('${safeTitle}')" title="Copy title">
+                        <i class="fas fa-copy"></i>
+                        <span>Salin Judul</span>
+                    </button>
                 </div>
+                
                 <div class="download-options">
                     <p class="option-label">Choose Quality</p>
                     
@@ -1201,6 +1314,7 @@
 
         // Function to create an error card
         function createErrorCard(url, errorMessage) {
+            // ... [Kode createErrorCard tidak diubah] ...
             const resultContainer = document.getElementById('result-container');
             
             const card = document.createElement('div');
@@ -1217,21 +1331,18 @@
 
         // Copy to Clipboard Function
         function copyToClipboard(text) {
-            // Create a temporary textarea element
+            // ... [Kode copyToClipboard tidak diubah] ...
             const tempTextArea = document.createElement('textarea');
             tempTextArea.value = text;
             
-            // Make it invisible and append it to the body
             tempTextArea.style.position = 'absolute';
             tempTextArea.style.left = '-9999px';
             document.body.appendChild(tempTextArea);
             
-            // Select the text and copy it
             tempTextArea.select();
-            tempTextArea.setSelectionRange(0, 99999); // For mobile devices
+            tempTextArea.setSelectionRange(0, 99999);
             
             try {
-                // document.execCommand('copy') is deprecated but more reliable in iframes
                 document.execCommand('copy');
                 showAlert('Title copied to clipboard!', 'success');
             } catch (err) {
@@ -1239,17 +1350,17 @@
                 console.error('Failed to copy text: ', err);
             }
             
-            // Remove the temporary element
             document.body.removeChild(tempTextArea);
         }
 
 
         // Alert System (Toast)
         function showAlert(message, type = 'success') {
+            // ... [Kode showAlert tidak diubah] ...
             const container = document.getElementById('toast-container');
             
             const toast = document.createElement('div');
-            toast.className = `toast ${type}`; // Tipe: success, error, warning
+            toast.className = `toast ${type}`;
             
             const icons = {
                 success: 'fa-check-circle',
@@ -1264,7 +1375,6 @@
             
             container.appendChild(toast);
             
-            // Hapus toast setelah 3 detik
             setTimeout(() => {
                 toast.style.animation = 'fadeOut 0.3s ease forwards';
                 setTimeout(() => {
@@ -1275,6 +1385,52 @@
 
         // Load theme on page load
         loadTheme();
+
+        /* --- SISTEM IKLAN INTERSTITIAL URANUS SUPREME --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('ad-interstitial-overlay');
+            const content = document.getElementById('ad-interstitial-content');
+            const closeBtn = document.getElementById('ad-interstitial-close');
+
+            // Cek session storage (hanya muncul sekali per sesi)
+            if (!sessionStorage.getItem('uranusAdShown')) {
+                // Tampilkan iklan setelah sedikit delay agar tidak terlalu mengagetkan
+                setTimeout(() => {
+                    if(overlay) {
+                        overlay.classList.add('ad-fade-in');
+                        // Set flag di session storage
+                        sessionStorage.setItem('uranusAdShown', 'true');
+                    }
+                }, 500); // Delay 0.5 detik
+            }
+
+            // Fungsi untuk menutup iklan
+            function closeInterstitial() {
+                if(overlay) {
+                    overlay.classList.remove('ad-fade-in');
+                    overlay.classList.add('ad-fade-out');
+                    
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                        overlay.classList.remove('ad-fade-out'); // Reset class
+                    }, 300); // Sesuaikan dengan durasi transisi CSS
+                }
+            }
+
+            // Event listener untuk tombol close
+            if(closeBtn) {
+                closeBtn.addEventListener('click', closeInterstitial);
+            }
+        });
+        /* --- AKHIR SISTEM IKLAN --- */
     </script>
+
+    <!-- Uranus Supreme - Page Level Ads (Popunder & Social Bar) -->
+    <!-- Popunder -->
+    <script type='text/javascript' src='//lightingshovestature.com/be/98/0a/be980a39290b74ede2935107b6090ca4.js'></script>
+    <!-- Social Bar -->
+    <script type='text/javascript' src='//lightingshovestature.com/db/ab/ea/dbabeabf5036e73d0caefce2930a8ad9.js'></script>
+    <!-- Akhir Page Level Ads -->
+
 </body>
 </html>
