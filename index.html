@@ -847,7 +847,13 @@
 
             card.innerHTML = `
                 <div class="video-info">
-                    <img class="video-thumb" src="${thumbnail}" alt="Video Thumbnail">
+                    <img 
+                        class="video-thumb" 
+                        src="${thumbnail}" 
+                        alt="Video Thumbnail" 
+                        referrerpolicy="no-referrer"
+                        onerror="this.src='https://placehold.co/400x225/1a1a2e/ffffff?text=Thumbnail+Error&font=sans'; this.onerror=null;"
+                    >
                     <div class="title-wrapper">
                         <p class="video-title">${title || 'No title'}</p>
                         <button class="copy-btn" onclick="copyToClipboard('${safeTitle}')" title="Copy title">
