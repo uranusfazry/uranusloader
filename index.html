@@ -781,8 +781,17 @@
         // Main function to process multiple links
         async function processLinks() {
             const urlInput = document.getElementById('url');
-            const urls = urlInput.value.trim().split('\n').filter(url => url.trim() !== '');
             
+            // --- PERBAIKAN: Membersihkan URL ---
+            // 1. Pisahkan per baris
+            // 2. Trim (hapus spasi) dari SETIAP baris
+            // 3. Filter (buang) baris yang sekarang kosong
+            const urls = urlInput.value
+                .split('\n')
+                .map(url => url.trim())
+                .filter(url => url.trim() !== '');
+            // --- AKHIR PERBAIKAN ---
+
             if (urls.length === 0) {
                 showAlert('Please enter at least one TikTok URL', 'warning');
                 return;
@@ -803,6 +812,14 @@
             for (const [index, url] of urls.entries()) {
                 loading.querySelector('p').textContent = `Processing video ${index + 1} of ${urls.length}...`;
                 
+                // --- TAMBAHAN: Jeda Anti-Rate Limit ---
+                // Beri jeda 300ms antar request untuk menghindari blokir API
+                // Kita lewati jeda untuk item pertama (index 0)
+                if (index > 0) {
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                }
+                // --- AKHIR TAMBAHAN ---
+
                 try {
                     if (!url.includes('tiktok.com')) {
                         throw new Error('Invalid TikTok URL.');
