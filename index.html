@@ -22,27 +22,27 @@
 
         /* ========== THEME PRIME (V1 - Dark Neon) ========== */
         body[data-theme="prime"] {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #1a1a2e;
-            --bg-card: rgba(26, 26, 46, 0.7);
+            --bg-primary: linear-gradient(135deg, #1f2937 0%, #111827 100%); /* Profesional Dark Blue/Slate */
+            --bg-secondary: #374151; /* Slate 700 */
+            --bg-card: rgba(55, 65, 81, 0.7); /* Slate 700 Transparan */
             --bg-input: rgba(255, 255, 255, 0.05);
-            --bg-button: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --bg-button-hover: linear-gradient(135deg, #7c8fe8 0%, #8b5eb5 100%);
+            --bg-button: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); /* Profesional Blue */
+            --bg-button-hover: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%); /* Lighter Blue */
             
             --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.7);
-            --text-muted: rgba(255, 255, 255, 0.5);
+            --text-secondary: #d1d5db; /* Slate 300 */
+            --text-muted: #9ca3af; /* Slate 400 */
             
-            --accent-primary: #667eea;
-            --accent-secondary: #764ba2;
-            --accent-glow: rgba(102, 126, 234, 0.4);
+            --accent-primary: #3b82f6; /* Blue 500 */
+            --accent-secondary: #2563eb; /* Blue 600 */
+            --accent-glow: rgba(59, 130, 246, 0.2); /* Reduced glow */
             
-            --border-color: rgba(255, 255, 255, 0.1);
-            --glow-color: rgba(102, 126, 234, 0.6);
+            --border-color: #4b5563; /* Slate 600 */
+            --glow-color: rgba(59, 130, 246, 0.4);
             
-            --option-hd: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --option-sd: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --option-mp3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --option-hd: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            --option-sd: linear-gradient(135deg, #10b981 0%, #059669 100%); /* Emerald/Green */
+            --option-mp3: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); /* Amber/Orange */
 
             --toast-success: #28a745;
             --toast-error: #dc3545;
@@ -105,6 +105,7 @@
             animation: rotate 20s linear infinite;
             opacity: 0.3;
             z-index: -1;
+            display: none; /* Dinonaktifkan untuk tampilan profesional */
         }
 
         @keyframes rotate {
@@ -441,6 +442,8 @@
             margin-bottom: 16px;
             box-shadow: var(--shadow-md) rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
+            min-height: 150px; /* Tambahkan ini */
+            background-color: var(--bg-input); /* Tambahkan ini */
         }
 
         .video-thumb:hover {
@@ -852,7 +855,8 @@
                         src="${thumbnail}" 
                         alt="Video Thumbnail" 
                         referrerpolicy="no-referrer"
-                        onerror="this.src='https://placehold.co/400x225/1a1a2e/ffffff?text=Thumbnail+Error&font=sans'; this.onerror=null;"
+                        loading="lazy"
+                        onerror="this.src='https://placehold.co/400x225/374151/9ca3af?text=Thumbnail+Failed&font=sans'; this.onerror=null;"
                     >
                     <div class="title-wrapper">
                         <p class="video-title">${title || 'No title'}</p>
@@ -934,6 +938,7 @@
             tempTextArea.setSelectionRange(0, 99999); // For mobile devices
             
             try {
+                // document.execCommand('copy') is deprecated but more reliable in iframes
                 document.execCommand('copy');
                 showAlert('Title copied to clipboard!', 'success');
             } catch (err) {
